@@ -6,9 +6,13 @@ public class HangMan {
 
     private String[] secretWords;
     private String secretWord;
+    private int numberOfGuesses;
+    private StringBuilder allGuesses = new StringBuilder();
+    private char[] correctGuesses;
 
-    public HangMan (String[] randomSecretWords) {
+    public HangMan (String[] randomSecretWords, int numberOfGuesses) {
         this.secretWords = randomSecretWords;
+        this.numberOfGuesses = numberOfGuesses;
         this.secretWord = selectRandomSecretWord(secretWords);
     }
 
@@ -18,6 +22,18 @@ public class HangMan {
 
     public String getSecretWord () {
         return secretWord;
+    }
+
+    public int getNumberOfGuesses () {
+        return numberOfGuesses;
+    }
+
+    public StringBuilder getAllGuesses () {
+        return allGuesses;
+    }
+
+    public char[] getCorrectGuesses () {
+        return correctGuesses;
     }
 
     private String selectRandomSecretWord (String[] secretWordsArray) {
@@ -34,12 +50,21 @@ public class HangMan {
         return secretWord;
     }
 
-    public StringBuilder returnDashedSecretWord () {
+    public StringBuilder hideSecretWord () {
         char[] selectedSecretWordArray = getSecretWord().toCharArray();
         StringBuilder replaceSecretWord = new StringBuilder();
         for (int j = 0; j < selectedSecretWordArray.length; j++) {
             replaceSecretWord.append("_" + " ");
         }
         return replaceSecretWord;
+    }
+
+    public String matchGuess (String guesses) {
+        String result = "";
+        String guessedWord = allGuesses.append(guesses).toString();
+        if (getSecretWord().equalsIgnoreCase(guessedWord)) {
+             result = getSecretWord();
+        }
+        return result;
     }
 }
