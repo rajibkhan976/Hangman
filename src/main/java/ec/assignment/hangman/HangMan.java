@@ -64,7 +64,21 @@ public class HangMan {
         String guessedWord = allGuesses.append(guesses).toString();
         if (getSecretWord().equalsIgnoreCase(guessedWord)) {
              result = getSecretWord();
+        } else {
+            result = matchCaharcterGuess(guesses).toString();
         }
         return result;
+    }
+
+    private StringBuilder matchCaharcterGuess (String guesses) {
+        StringBuilder charcterGuess = new StringBuilder();
+        char[] secretWordArray = secretWord.toCharArray();
+        for (int k = 0; k < secretWordArray.length; k++) {
+            if (secretWordArray[k] == guesses.charAt(k)) {
+                charcterGuess.append(guesses.charAt(k));
+                break;
+            }
+        }
+        return  charcterGuess;
     }
 }
