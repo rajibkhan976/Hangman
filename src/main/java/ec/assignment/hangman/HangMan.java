@@ -34,4 +34,12 @@ public class HangMan {
         return secretWord;
     }
 
+    public StringBuilder returnDashedSecretWord () {
+        char[] selectedSecretWordArray = getSecretWord().toCharArray();
+        StringBuilder replaceSecretWord = new StringBuilder();
+        for (int j = 0; j < selectedSecretWordArray.length; j++) {
+            replaceSecretWord.append("_" + " ");
+        }
+        return replaceSecretWord;
+    }
 }
