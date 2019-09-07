@@ -10,7 +10,8 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-
+        String[] wordsArray = {"Java","JavaScript","HTML","CSS","SQL"};
+        HangMan secretWords = new HangMan(wordsArray);
+        System.out.println(secretWords.getSecretWord());
     }
 }
