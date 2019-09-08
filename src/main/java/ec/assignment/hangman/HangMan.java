@@ -88,4 +88,19 @@ public class HangMan {
         return  charcterGuess;
     }
 
+    public StringBuilder repHidWordWithMatch () {
+        StringBuilder replaceHiddenSecretWord = new StringBuilder();
+        StringBuilder replacement = new StringBuilder();
+        String hiddenSecWordStr = hideSecretWord().toString();
+        replaceHiddenSecretWord.append(hiddenSecWordStr);
+        String randSecWord = getSecretWord();
+        for (int p = 0; p < correctGuesses.length; p++) {
+            int replaceOffset = randSecWord.indexOf(correctGuesses[p], p);
+            replacement.append(correctGuesses[p]);
+            replaceHiddenSecretWord.replace(replaceOffset, (replaceOffset + 2), replacement.toString());
+            replacement.delete(0, 1);
+        }
+        return replaceHiddenSecretWord;
+    }
+
 }

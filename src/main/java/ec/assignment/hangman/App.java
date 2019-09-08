@@ -33,6 +33,7 @@ public class App
                 char[] matchedGuess = userGuess.toCharArray();
                 secretWordsGame.setCorrectGuesses(matchedGuess);
                 System.out.println("Your guess matched with a letter.");
+                System.out.println(secretWordsGame.repHidWordWithMatch());
                 System.out.println("The secret word is:");
                 System.out.println(secretWordsGame.getCorrectGuesses());
                 if (matchCount == lengthOfSecWord) {
