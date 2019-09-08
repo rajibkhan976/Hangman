@@ -21,9 +21,6 @@ public class App
         boolean keepAlive = true;
 
         while (keepAlive) {
-            if (numGuess < 1) {
-                keepAlive = false;
-            }
             String userGuess = userInput.nextLine();
             if(secretWordsGame.matchWordGuess(userGuess)) {
                 System.out.println(secretWordsGame.getSecretWord());
@@ -32,10 +29,12 @@ public class App
             } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
                 System.out.println("Your guess matched with a letter");
             } else {
-                numGuess = numGuess - 1;
+                --numGuess;
                 System.out.println("Your guess is wrong");
             }
-
+            if (numGuess < 1) {
+                keepAlive = false;
+            }
         }
     }
 }

@@ -63,9 +63,8 @@ public class HangMan {
 
     public boolean matchWordGuess (String guesses) {
         boolean result = false;
-        String guessedWord = allGuesses.append(guesses).toString();
-        if (getSecretWord().equalsIgnoreCase(guessedWord)) {
-            allGuesses.append(guesses);
+        allGuesses.append(guesses);
+        if (getSecretWord().equalsIgnoreCase(guesses)) {
             result = true;
         }
         return result;
@@ -74,10 +73,8 @@ public class HangMan {
     public boolean matchCaharcterGuess (String guesses) {
         allGuesses.append(guesses);
         boolean charcterGuess = false;
-        ArrayList successfulMatch = new ArrayList();
         for (int k = 0, l = 1; k < getSecretWord().length() && l  <= getSecretWord().length(); k++, l++)
             if (getSecretWord().substring(k, l).equalsIgnoreCase(guesses)) {
-                successfulMatch.add(guesses);
                 charcterGuess = true;
                 break;
             }
