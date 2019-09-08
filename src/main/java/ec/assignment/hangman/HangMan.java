@@ -96,6 +96,9 @@ public class HangMan {
         String randSecWord = getSecretWord();
         for (int p = 0; p < correctGuesses.length; p++) {
             int replaceOffset = randSecWord.indexOf(correctGuesses[p], p);
+            if (randSecWord.indexOf(correctGuesses[p], p) == -1) {
+                replaceOffset = randSecWord.toLowerCase().indexOf(correctGuesses[p], p);
+            }
             replacement.append(correctGuesses[p]);
             replaceHiddenSecretWord.replace(replaceOffset, (replaceOffset + 2), replacement.toString());
             replacement.delete(0, 1);
