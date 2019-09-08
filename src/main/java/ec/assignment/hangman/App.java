@@ -15,7 +15,7 @@ public class App
         int matchCount = 0;
         System.out.println("You can guess 8 times.");
         System.out.println("You can guess either the complete word or a single letter.");
-        System.out.println("Your number of chances will reduce if you make a wrong guess");
+        System.out.println("Your number of chances for guessing will reduce if you make a wrong guess");
         System.out.println(secretWordsGame.getSecretWord());
 
         Scanner userInput = new Scanner(System.in);
@@ -26,7 +26,7 @@ public class App
             String userGuess = userInput.nextLine();
             if(secretWordsGame.matchWordGuess(userGuess)) {
                 System.out.println(secretWordsGame.getSecretWord());
-                System.out.println("You won.");
+                System.out.println("You won the game.");
                 keepAlive = false;
             } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
                 matchCount++;
@@ -36,11 +36,11 @@ public class App
                 System.out.println("The secret word is:");
                 System.out.println(secretWordsGame.getCorrectGuesses());
                 if (matchCount == lengthOfSecWord) {
-                    System.out.println("You won.");
+                    System.out.println("You won the game.");
                     keepAlive = false;
                 }
             } else {
-                --numGuess;
+                numGuess--;
                 System.out.println("Your guess is wrong");
             }
             if (numGuess < 1) {
