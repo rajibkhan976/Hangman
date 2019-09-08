@@ -10,7 +10,7 @@ public class HangMan {
     private String secretWord;
     private int numberOfGuesses;
     private StringBuilder allGuesses = new StringBuilder();
-    private char[] correctGuesses;
+    private char[] correctGuesses = new char[0];
 
     public HangMan (String[] randomSecretWords, int numberOfGuesses) {
         this.secretWords = randomSecretWords;
@@ -38,6 +38,14 @@ public class HangMan {
         return correctGuesses;
     }
 
+    public void setCorrectGuesses (char[] matchedGuesses) {
+        int offset = this.correctGuesses.length;
+        this.correctGuesses = Arrays.copyOf(this.correctGuesses, offset + matchedGuesses.length);
+        for (int m = offset, n = 0; n < matchedGuesses.length; m++, n++) {
+            this.correctGuesses[m] = matchedGuesses[n];
+        }
+    }
+
     private String selectRandomSecretWord (String[] secretWordsArray) {
         for (int i = 0; i < secretWordsArray.length; i++) {
             Random randomNumber = new Random();
@@ -62,12 +70,12 @@ public class HangMan {
     }
 
     public boolean matchWordGuess (String guesses) {
-        boolean result = false;
+        boolean wordGuess = false;
         allGuesses.append(guesses);
         if (getSecretWord().equalsIgnoreCase(guesses)) {
-            result = true;
+            wordGuess = true;
         }
-        return result;
+        return wordGuess;
     }
 
     public boolean matchCaharcterGuess (String guesses) {

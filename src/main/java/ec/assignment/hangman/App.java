@@ -27,7 +27,10 @@ public class App
                 System.out.println("You won.");
                 keepAlive = false;
             } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
+                char[] matchedGuess = userGuess.toCharArray();
+                secretWordsGame.setCorrectGuesses(matchedGuess);
                 System.out.println("Your guess matched with a letter");
+                System.out.println(secretWordsGame.getCorrectGuesses());
             } else {
                 --numGuess;
                 System.out.println("Your guess is wrong");
