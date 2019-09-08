@@ -1,5 +1,7 @@
 package ec.assignment.hangman;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class HangMan {
@@ -59,26 +61,26 @@ public class HangMan {
         return replaceSecretWord;
     }
 
-    public String matchGuess (String guesses) {
-        String result = "";
+    public boolean matchWordGuess (String guesses) {
+        boolean result = false;
         String guessedWord = allGuesses.append(guesses).toString();
         if (getSecretWord().equalsIgnoreCase(guessedWord)) {
-             result = getSecretWord();
-        } else {
-            result = matchCaharcterGuess(guesses).toString();
+            allGuesses.append(guesses);
+            result = true;
         }
         return result;
     }
 
-    private StringBuilder matchCaharcterGuess (String guesses) {
-        StringBuilder charcterGuess = new StringBuilder();
-        char[] secretWordArray = secretWord.toCharArray();
-        for (int k = 0; k < secretWordArray.length; k++) {
-            if (secretWordArray[k] == guesses.charAt(k)) {
-                charcterGuess.append(guesses.charAt(k));
+    public boolean matchCaharcterGuess (String guesses) {
+        allGuesses.append(guesses);
+        boolean charcterGuess = false;
+        ArrayList successfulMatch = new ArrayList();
+        for (int k = 0, l = 1; k < getSecretWord().length() && l  <= getSecretWord().length(); k++, l++)
+            if (getSecretWord().substring(k, l).equalsIgnoreCase(guesses)) {
+                successfulMatch.add(guesses);
+                charcterGuess = true;
                 break;
             }
-        }
         return  charcterGuess;
     }
 }
