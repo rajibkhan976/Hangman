@@ -11,6 +11,8 @@ public class App
         HangMan secretWordsGame = new HangMan(wordsArray, 8);
         System.out.println("Guess the following word to win the game.");
         System.out.println(secretWordsGame.hideSecretWord());
+        int lengthOfSecWord = secretWordsGame.getSecretWord().length();
+        int matchCount = 0;
         System.out.println("You can guess 8 times.");
         System.out.println("You can guess either the complete word or a single letter.");
         System.out.println("Your number of chances will reduce if you make a wrong guess");
@@ -27,10 +29,16 @@ public class App
                 System.out.println("You won.");
                 keepAlive = false;
             } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
+                matchCount++;
                 char[] matchedGuess = userGuess.toCharArray();
                 secretWordsGame.setCorrectGuesses(matchedGuess);
-                System.out.println("Your guess matched with a letter");
+                System.out.println("Your guess matched with a letter.");
+                System.out.println("The secret word is:");
                 System.out.println(secretWordsGame.getCorrectGuesses());
+                if (matchCount == lengthOfSecWord) {
+                    System.out.println("You won.");
+                    keepAlive = false;
+                }
             } else {
                 --numGuess;
                 System.out.println("Your guess is wrong");

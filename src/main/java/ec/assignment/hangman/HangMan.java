@@ -88,4 +88,5 @@ public class HangMan {
             }
         return  charcterGuess;
     }
+
 }
