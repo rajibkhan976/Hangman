@@ -7,7 +7,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        String[] wordsArray = {"Java","JavaScript","HTML","CSS","Oracle","SQL","Android"};
+        String[] wordsArray = {"HTML","Oracle","SQL","Python","Ruby"};
         HangMan secretWordsGame = new HangMan(wordsArray, 8);
         System.out.println("Guess the following word to win the game.");
         System.out.println(secretWordsGame.hideSecretWord());
@@ -24,28 +24,33 @@ public class App
 
         while (keepAlive) {
             String userGuess = userInput.nextLine();
-            if(secretWordsGame.matchWordGuess(userGuess)) {
-                System.out.println(secretWordsGame.getSecretWord());
-                System.out.println("You won the game.");
-                keepAlive = false;
-            } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
-                matchCount++;
-                char[] matchedGuess = userGuess.toCharArray();
-                secretWordsGame.setCorrectGuesses(matchedGuess);
-                System.out.println("Your guess matched with a letter.");
-                System.out.println(secretWordsGame.repHidWordWithMatch());
-                System.out.println("The secret word is:");
-                System.out.println(secretWordsGame.getCorrectGuesses());
-                if (matchCount == lengthOfSecWord) {
+            if (secretWordsGame.getAllGuesses().indexOf(userGuess) == -1) {
+                if(secretWordsGame.matchWordGuess(userGuess)) {
+                    System.out.println(secretWordsGame.getSecretWord());
                     System.out.println("You won the game.");
+                    keepAlive = false;
+                } else if (secretWordsGame.matchCaharcterGuess(userGuess)) {
+                    matchCount++;
+                    char[] matchedGuess = userGuess.toCharArray();
+                    secretWordsGame.setCorrectGuesses(matchedGuess);
+                    System.out.println(secretWordsGame.getAllGuesses());
+                    System.out.println("Your guess matched with a letter.");
+                    System.out.println(secretWordsGame.repHidWordWithMatch());
+                    System.out.println("The secret word is:");
+                    System.out.println(secretWordsGame.getCorrectGuesses());
+                    if (matchCount == lengthOfSecWord) {
+                        System.out.println("You won the game.");
+                        keepAlive = false;
+                    }
+                } else {
+                    numGuess--;
+                    System.out.println("Your guess is wrong");
+                }
+                if (numGuess < 1) {
                     keepAlive = false;
                 }
             } else {
-                numGuess--;
-                System.out.println("Your guess is wrong");
-            }
-            if (numGuess < 1) {
-                keepAlive = false;
+                System.out.println("You have already guessed this one!");
             }
         }
     }

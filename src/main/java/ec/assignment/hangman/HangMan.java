@@ -78,13 +78,13 @@ public class HangMan {
     }
 
     public boolean matchCaharcterGuess (String guesses) {
-        allGuesses.append(guesses);
         boolean charcterGuess = false;
-        for (int k = 0, l = 1; k < getSecretWord().length() && l  <= getSecretWord().length(); k++, l++)
-            if (getSecretWord().substring(k, l).equalsIgnoreCase(guesses)) {
-                charcterGuess = true;
-                break;
-            }
+        for (int k = 0, l = 1; k < getSecretWord().length() && l  <= getSecretWord().length(); k++, l++) {
+                if (getSecretWord().substring(k, l).equalsIgnoreCase(guesses)) {
+                    charcterGuess = true;
+                    break;
+                }
+        }
         return  charcterGuess;
     }
 
